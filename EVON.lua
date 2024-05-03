@@ -8,10 +8,10 @@
 local Developer_Player = "0"
 local test_ModeAhax = false;
 
-local KeySystem_Domain = "https://pandadevelopment.net"
+-- local KeySystem_Domain = "https://pandadevelopment.net" no need for this as the key system is forcefully unused.
 
 -- Evon Basic Configurations
-local ConfigURL = "https://evon.cc/android/config/EvonConfig.json"
+local ConfigURL = "https://raw.githubusercontent.com/hyperionlawl/EvonReversed/main/Backend/CONFIG.json" -- uses our config.
 
 local http_service = cloneref(game:GetService("HttpService"))
 local EvonConfiguration = http_service:JSONDecode(game:HttpGet(ConfigURL))
