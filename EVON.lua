@@ -1,3 +1,9 @@
+--[[
+
+   EVON REVERSED
+   BY PRISMTEAM
+
+]]
 
 local Developer_Player = "0"
 local test_ModeAhax = false;
@@ -18,9 +24,9 @@ else
 --// Instances
 local function EvonNotification(messages)
 	game.StarterGui:SetCore("SendNotification", {
-		Title = "Evon Android"; -- the title (ofc)
-		Text = messages; -- what the text says (ofc)
-		Icon = "rbxassetid://15509574978"; -- the image if u want. 
+		Title = "EvonReversed"; -- the title (ofc)
+		Text = notificationfunction; -- what the text says (ofc)
+		Icon = "rbxassetid://0"; -- the image if u want. 
 		Duration = 5; -- how long the notification should in secounds
 	})
 end
@@ -67,10 +73,10 @@ local function EvonCheckKey(ClientKey)
 		end -- IM GONNA REVERSE ENGINEER THIS KEY SYS
 		return false
 	elseif EvonConfiguration.Keyless then
-		EvonNotification("Key System Disabled...")
+		EvonNotification("Forever Keyless Edition by PrismTeam!")
 		return true
 	elseif PandaAuth:ValidateKey(evonID, ClientKey) then
-		print('Authorized Complete')
+		print('Key System isnt going to ever be used on this build, if this prints please use the loadstring on the repo.')
 		return true
 	else
 		warn('Failed to Authorized...')
@@ -555,14 +561,14 @@ end
 
 local uiSettings = {
 	key = "",
-	userName = "",
+	userName = "EvonSystem",
 	editorInit = "print(\"Evon-Android >>>\");",
 	searchAPI = "ScriptBlox",
 	language = "English",
-	unlockFps = false,
+	unlockFps = true,
 	vSync = false,
-	fps = 60,
-	antiAfk = false,
+	fps = 240,
+	antiAfk = true,
 	serverHopMode = "full"
 };
 
@@ -1276,11 +1282,11 @@ local function loadKeyUI(callback)
 		local enterKey = freeFrame.enterKey;
 
 		getKeyLink.MouseButton1Click:Connect(function()
-			local PandaAuth = loadstring(game:HttpGet('https://raw.githubusercontent.com/Panda-Repositories/PandaKS_Libraries/main/library/LuaLib/ROBLOX/PandaBetaLib.lua'))()
+	--[[		local PandaAuth = loadstring(game:HttpGet('https://raw.githubusercontent.com/Panda-Repositories/PandaKS_Libraries/main/library/LuaLib/ROBLOX/PandaBetaLib.lua'))()
 			local url = PandaAuth:GetKey("evon")
 			_setclipboard(url);
 			EvonNotification("Successfully Copied Key")
-		end);
+	]]	end);
 
 		enterKey.MouseButton1Click:Connect(function()
 			if EvonCheckKey(freeFrame.keyInput.Text) then
@@ -4104,7 +4110,7 @@ local function loadMainUI()
 	end
 
 	changeLanguage(uiSettings.language);
-	rconsoleprint("Evon-Android Successfully Loaded!");
+	rconsoleprint("EvonReversed has loaded completely! You can now use this modified UI.");
 end;
 
 --[[ Load ]]--
