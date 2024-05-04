@@ -5,10 +5,68 @@
 
 ]]
 
+--[[ 
+BUILD INDEX:
+OFFICIAL BUILD TYPES:
+beta: Beta Builds of EvonReversed (openly public)
+public: The main loadstring of the product a fully fledged version that isnt in testing
+forked: USE THIS IF FORKING OUR PRODUCT
+]]
+
+local ERPT = "beta"
 local Developer_Player = "0"
 local test_ModeAhax = false;
 
--- local KeySystem_Domain = "https://pandadevelopment.net" no need for this as the key system is forcefully unused.
+function ERPTCHECK()
+if ERPT = "beta" then
+print("==== BUILD INFORMATION ====")
+print("Evon UI: Evon Reversed")
+print("Build Mode: BETA/TESTING")
+print("===========================")
+print("our server: dsc.gg/prismteam")
+print("our site: prismteam.vercel.app")
+print("===========================")
+if ERPT = "public" then
+print("==== BUILD INFORMATION ====")
+print("Evon UI: Evon Reversed")
+print("Build Mode: public")
+print("===========================")
+print("our server: dsc.gg/prismteam")
+print("our site: prismteam.vercel.app")
+print("===========================")
+if ERPT = "forked" then
+print("==== BUILD INFORMATION ====")
+print("Evon UI: Evon Reversed")
+print("Build Mode: Custom Repo")
+print("===========================")
+print("our server: dsc.gg/prismteam")
+print("our site: prismteam.vercel.app")
+print("===========================")
+wait(10)
+local fork = true
+repeat while true do
+wait(59)
+print("A USER IN THIS SERVER IS USING A CUSTOM BUILD OF EVON REVERSED") -- we tattle on you if you fork our product every singular minute lawl
+		else
+print("============INFO=============")
+print("You are using an evon reversed build that isnt defined.")
+print("=============================")
+print(".")
+wait(5)
+print("==== BUILD INFORMATION ====")
+print("Evon UI: Evon Reversed")
+print("Build Mode: NOT DEFINED")
+print("===========================")
+print("our server: dsc.gg/prismteam")
+print("our site: prismteam.vercel.app")
+print("===========================")
+warn("You only have 2 hours to use this session as it isnt an official build.")
+warn("Starting death timer..")
+wait(7200)
+game.Players.LocalPlayer:Kick("You have been disconnected from EvonReversed because your using a non-official or non-supported build. || PLEASE USE OFFICIAL BUILDS FROM THE PRISMTEAM DISCORD: dsc.gg/prismteam")				
+end
+
+ERPTCHECK()
 
 -- Evon Basic Configurations
 local ConfigURL = "https://raw.githubusercontent.com/hyperionlawl/EvonReversed/main/Backend/CONFIG.json" -- uses our config.
@@ -54,20 +112,11 @@ end
 Uncomment this if you want it to check the version
 ]]
 
-
-local function EvonDebug(text)
-	if tostring(game:GetService("Players").LocalPlayer.UserId) == Developer_Player then
-		print("[SYSTEM]: EVONDEV IS USING EvonReversed ".. text)
-	end
-end
-
-
-
 local function EvonCheckKey(ClientKey)
 	------------------------------ Check Key -----------------------------------------
 	local evonID = "evon"
 	local PandaAuth = loadstring(game:HttpGet('https://raw.githubusercontent.com/Panda-Repositories/PandaKS_Libraries/main/library/LuaLib/ROBLOX/PandaBetaLib.lua'))()
-	if ClientKey == "skie" then
+	if ClientKey == "EvonReversed" then
 		if tostring(game:GetService("Players").LocalPlayer.UserId) == Developer_Player then
 			return true
 		end -- IM GONNA REVERSE ENGINEER THIS KEY SYS
@@ -75,38 +124,37 @@ local function EvonCheckKey(ClientKey)
 	elseif EvonConfiguration.Keyless then
 		EvonNotification("Forever Keyless Edition by PrismTeam!")
 		return true
-	elseif PandaAuth:ValidateKey(evonID, ClientKey) then
-		print('Key System isnt going to ever be used on this build, if this prints please use the loadstring on the repo.')
-		return true
 	else
-		warn('Failed to Authorized...')
+		warn('Failed to Authorize.')
 		return false
 	end
 		------------------------------ Check Key -----------------------------------------
 end
 function Load_CustomFunctions()
-	print("Custom Features successfully loaded...")
+	print("Loaded CustomFuncs.")
 
 
-	getgenv().PandaAuthenticate = function(ServiceID, Client_Key)
+--[[	
+getgenv().PandaAuthenticate = function(ServiceID, Client_Key)
 		local PandaAuth = loadstring(game:HttpGet('https://raw.githubusercontent.com/Panda-Repositories/PandaKS_Libraries/main/library/LuaLib/ROBLOX/PandaBetaLib.lua'))()
 		-- Built In Panda Authenticate ( Hub utilized Panda-Pelican Development )
 		if PandaAuth:ValidateKey(ServiceID, Client_Key) then
 			return true
-		else
+		else                           -- Testing Things.
 			return false
 		end  
 	end
 end
+]]
 --[[ Settings ]]--
 
-local maxLines = 250;
+local maxLines = 999; -- Maximum limit for lines
 
 --[[ Variables ]]--
 
 local httpService = game:GetService("HttpService");
 local teleportService = game:GetService("TeleportService");
-local textService = game:GetService("TextService");
+local textService = game:GetService("TextService");             -- Upon reading this section this is likely their UNC support :skul:
 local tweenService = game:GetService("TweenService");
 local userInputService = game:GetService("UserInputService");
 
@@ -560,7 +608,7 @@ end
 --[[ Settings ]]--
 
 local uiSettings = {
-	key = "",
+	key = "EvonReversed",
 	userName = "EvonSystem",
 	editorInit = "print(\"Evon-Android >>>\");",
 	searchAPI = "ScriptBlox",
@@ -627,7 +675,7 @@ end
 local function addTransparencyHighlights(btn)
 	btn.MouseButton1Down:Connect(function()
 		tween(btn, 0.18, {
-			BackgroundTransparency = 0
+			BackgroundTransparency = 0.4
 		});
 	end);
 	btn.MouseButton1Up:Connect(function()
@@ -696,7 +744,7 @@ local function loadKeyUI(callback)
 
 	-- local pandaAuth = loadstring(game:HttpGet(string.format("https://pandadevelopment.net/servicelib?service=%s&core=%s&param=%s", serviceID, libType, libVersion)))()
 
-	local keyFrame = create("Frame", { 
+	--[[local keyFrame = create("Frame", { 
 		AnchorPoint = Vector2.new(0.5, 0), 
 		BackgroundColor3 = Color3.fromHex("ffffff"), 
 		BorderSizePixel = 0, 
@@ -1223,6 +1271,10 @@ local function loadKeyUI(callback)
 		})
 	});
 
+  Going to analyze this UI later.
+
+			]]
+
 	--[[ Start ]]--
 
 	local content = keyFrame.content;
@@ -1276,7 +1328,7 @@ local function loadKeyUI(callback)
 	--[[ Freemium ]]--
 
 	do
-		local freeFrame = tabs.freemium;
+		--[[local freeFrame = tabs.freemium;
 
 		local getKeyLink = freeFrame.getKeyLink;
 		local enterKey = freeFrame.enterKey;
@@ -1286,7 +1338,7 @@ local function loadKeyUI(callback)
 			local url = PandaAuth:GetKey("evon")
 			_setclipboard(url);
 			EvonNotification("Successfully Copied Key")
-	]]	end);
+		end);
 
 		enterKey.MouseButton1Click:Connect(function()
 			if EvonCheckKey(freeFrame.keyInput.Text) then
@@ -1299,6 +1351,9 @@ local function loadKeyUI(callback)
 				EvonNotification("Invalid Key")
 			end
 		end);
+
+Disabling every Key Related UI until Ihave fully analyzed it
+]]
 
 		resizeFunctions[#resizeFunctions + 1] = function()
 			getKeyLink.Size = UDim2.new(0, getKeyLink.TextBounds.X + 30, 0, 34);
@@ -1422,7 +1477,7 @@ local function loadKeyUI(callback)
 	if EvonCheckKey(uiSettings.key) then
 		validLogin();
 	else
-		EvonNotification("Saved Key is no longer valid")
+		EvonNotification("EvonReversed Debug is active lawl")
 	end
 end
 
@@ -4110,7 +4165,7 @@ local function loadMainUI()
 	end
 
 	changeLanguage(uiSettings.language);
-	rconsoleprint("EvonReversed has loaded completely! You can now use this modified UI.");
+	rconsoleprint("EvonReversedBETA has loaded | BUGS MAY OCCUR AS IT IS CURRENTLY IN TESTING");
 end;
 
 --[[ Load ]]--
