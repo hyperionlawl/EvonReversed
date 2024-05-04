@@ -1,10 +1,7 @@
 --[[
-
    EVON REVERSED
    BY PRISMTEAM
-
 ]]
-
 --[[ 
 BUILD INDEX:
 OFFICIAL BUILD TYPES:
@@ -12,11 +9,11 @@ beta: Beta Builds of EvonReversed (openly public)
 public: The main loadstring of the product a fully fledged version that isnt in testing
 forked: USE THIS IF FORKING OUR PRODUCT
 ]]
-
+-- ProperTIES
 local ERPT = "beta"
 local Developer_Player = "0"
 local test_ModeAhax = false;
-
+-- ERPT CHECK FUNC
 function ERPTCHECK()
 if ERPT = "beta" then
 print("==== BUILD INFORMATION ====")
